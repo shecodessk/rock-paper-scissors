@@ -3,20 +3,16 @@ let compScore = 0
 
 const getComputerChoice = () => {
   const arrChoices = ['rock', 'paper', 'scissors']
-  const randomNum = Math.floor(Math.random() * 3);
-  const compChoice = arrChoices[randomNum]
-  return compChoice
+  const randomNum = Math.floor(Math.random() * arrChoices.length);
+  console.log(randomNum);
+  return arrChoices[randomNum]
 }
 
 
 
 const playRound = (playerSelection, computerSelection) => {
- if(playerSelection === 'rock' && computerSelection === 'rock'){
-      console.log('You tie! you both pick rock')
-  } else if(playerSelection === 'scissors' && computerSelection === 'scissors'){
-      console.log('You tie! you both pick scissors')
-  } else if(playerSelection === 'paper' && computerSelection === 'paper'){
-      console.log('You tie! you both pick paper')
+ if(playerSelection === computerSelection){
+      console.log(`You tie! you both pick ${playerSelection}`)
   } else if(playerSelection === 'scissors' && computerSelection === 'paper'){
       playerScore++
       console.log('You win! scissors wins over paper')
@@ -43,9 +39,8 @@ const playRound = (playerSelection, computerSelection) => {
 const game = () => {
   for(i = 0; i < 5; i++){
     const playerSelection = prompt('Choose what to throw:', 'rock, paper, scissors?').toLocaleLowerCase();
-   
     const computerSelection = getComputerChoice()
-    console.log(playRound(playerSelection, computerSelection))
+    playRound(playerSelection, computerSelection)
   }
   if (playerScore > compScore){
     return 'You beat the computer!'
